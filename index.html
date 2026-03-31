@@ -75,25 +75,20 @@
       z-index: 0;
     }
 
-    /* AURORA BACKGROUND — layered glows, teal → blue → purple → magenta */
     .glow-wash {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-
-      /* Base dark layer */
       background: #020c0c;
     }
 
-    /* Each aurora layer as a pseudo + a sibling div */
     .aurora-layer-1 {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background:
-        /* teal crown — top */
         radial-gradient(
           ellipse 90% 35% at 50% -5%,
           rgba(0, 180, 160, 0.38) 0%,
@@ -108,7 +103,6 @@
       pointer-events: none;
       z-index: 0;
       background:
-        /* deep blue orb — upper-mid */
         radial-gradient(
           ellipse 70% 40% at 50% 32%,
           rgba(18, 40, 160, 0.45) 0%,
@@ -123,7 +117,6 @@
       pointer-events: none;
       z-index: 0;
       background:
-        /* purple bloom — mid */
         radial-gradient(
           ellipse 80% 45% at 50% 62%,
           rgba(90, 20, 180, 0.42) 0%,
@@ -138,7 +131,6 @@
       pointer-events: none;
       z-index: 0;
       background:
-        /* magenta surge — bottom */
         radial-gradient(
           ellipse 100% 30% at 50% 102%,
           rgba(160, 0, 180, 0.55) 0%,
@@ -652,13 +644,10 @@
     .catalog-item:hover { background: var(--panel2); }
     .catalog-item:hover::before { transform: scaleY(1); }
 
-    .catalog-item.active-track {
-      background: var(--panel2);
-    }
+    .catalog-item.active-track { background: var(--panel2); }
+    .catalog-item.active-track::before { transform: scaleY(1); }
 
-    .catalog-item.active-track::before {
-      transform: scaleY(1);
-    }
+    .cat-number {
       font-family: 'VT323', monospace;
       font-size: 0.72rem;
       color: var(--text-dim);
@@ -804,12 +793,12 @@
   <nav>
     <a href="index.html" class="nav-brand">DESCEND9DOWN</a>
     <ul class="nav-links">
-  <li><a href="https://descend9down.github.io" data-page="gallery">PLEROMA</a></li>
-  <li><a href="https://descend9down.github.io/omnia.html" data-page="omnia">OMNIA</a></li>
-  <li><a href="https://descend9down.github.io/prints.html" data-page="archetypes">ARCHETYPES</a></li>
-  <li><a href="https://descend9down.github.io/archive.html" data-page="archive">ARCHIVE</a></li>
-  <li><a href="https://descend9down.github.io/descend9sound" data-page="d9s">D9S</a></li>
-</ul>
+      <li><a href="https://descend9down.github.io" data-page="gallery">PLEROMA</a></li>
+      <li><a href="https://descend9down.github.io/omnia.html" data-page="omnia">OMNIA</a></li>
+      <li><a href="https://descend9down.github.io/prints.html" data-page="archetypes">ARCHETYPES</a></li>
+      <li><a href="https://descend9down.github.io/archive.html" data-page="archive">ARCHIVE</a></li>
+      <li><a href="https://descend9down.github.io/descend9sound" data-page="d9s">D9S</a></li>
+    </ul>
   </nav>
 
   <main>
@@ -869,10 +858,10 @@
 
           <div class="win-body">
             <div class="win-info">
-              <span class="info-label">TITLE</span>   <span class="info-val">Damiana Summer</span>
-              <span class="info-label">ARTIST</span>  <span class="info-val">itsalion</span>
-              <span class="info-label">MOOD</span>    <span class="info-val">Reflective · Brooding</span>
-              <span class="info-label">YEAR</span>    <span class="info-val">2017</span>
+              <span class="info-label">TITLE</span>   <span class="info-val" id="info-title">Damiana Summer</span>
+              <span class="info-label">ARTIST</span>  <span class="info-val" id="info-artist">itsalion</span>
+              <span class="info-label">MOOD</span>    <span class="info-val" id="info-mood">Reflective · Brooding</span>
+              <span class="info-label">YEAR</span>    <span class="info-val" id="info-year">2017</span>
             </div>
             <div class="win-viz" id="viz"></div>
           </div>
@@ -903,28 +892,56 @@
       <div class="section-header">
         <h2 class="section-title">CATALOG</h2>
         <div class="section-rule"></div>
-        <span class="section-count" id="catalog-count">// 2 TRACKS AVAILABLE</span>
+        <span class="section-count" id="catalog-count">// 3 TRACKS AVAILABLE</span>
       </div>
 
       <div class="catalog-grid">
-        <div class="catalog-item active-track" data-file="Damiana Summer.mp3" data-title="Damiana Summer" data-artist="itsalion" data-mood="Reflective · Brooding" data-year="2017">
+
+        <div class="catalog-item active-track"
+             data-file="Damiana Summer.mp3"
+             data-title="Damiana Summer"
+             data-artist="itsalion"
+             data-mood="Reflective · Brooding"
+             data-year="2017">
           <div class="cat-number">D9S·001</div>
           <div class="cat-title">Damiana Summer</div>
-          <div class="cat-meta">320kbps · 2017</div>
+          <div class="cat-meta">VBR · 2017</div>
           <div class="cat-tags">
             <span class="cat-tag">REFLECTIVE</span>
             <span class="cat-tag">BROODING</span>
           </div>
         </div>
-        <div class="catalog-item" data-file="lycanthropy.mp3" data-title="Lycanthropy" data-artist="itsalion" data-mood="Pensive · Emergent" data-year="2024">
+
+        <div class="catalog-item"
+             data-file="lycanthropy.mp3"
+             data-title="Lycanthropy"
+             data-artist="itsalion"
+             data-mood="Pensive · Emergent"
+             data-year="2024">
           <div class="cat-number">D9S·002</div>
           <div class="cat-title">Lycanthropy</div>
-          <div class="cat-meta">320kbps · 2024</div>
+          <div class="cat-meta">VBR · 2024</div>
           <div class="cat-tags">
             <span class="cat-tag">PENSIVE</span>
             <span class="cat-tag">EMERGENT</span>
           </div>
         </div>
+
+        <div class="catalog-item"
+             data-file="Center_Me.mp3"
+             data-title="Center Me"
+             data-artist="itsalion"
+             data-mood="Emotive · Fracture"
+             data-year="2025">
+          <div class="cat-number">D9S·003</div>
+          <div class="cat-title">Center Me</div>
+          <div class="cat-meta">VBR · 4:55 · 2025</div>
+          <div class="cat-tags">
+            <span class="cat-tag">EMOTIVE</span>
+            <span class="cat-tag">FRACTURE</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -937,7 +954,7 @@
       <div class="about-text">
         <p><strong>DESCEND9SOUND</strong> is the music platform of the DESCEND9DOWN creative universe — a catalog of instrumental and electronic compositions built for sync, film, and independent release.</p>
         <p>The catalog spans ambient, industrial, cinematic, and rhythmic territories — music built to occupy space.</p>
-        <p>For licensing inquiries, collaborations, or catalog access, contact <a href="/cdn-cgi/l/email-protection#9df9f8eefef8f3f9a4f9f2eaf3ddfaf0fcf4f1b3fef2f0"><span class="__cf_email__" data-cfemail="5430312737313a306d303b233a143339353d387a373b39">[email&#160;protected]</span></a></p>
+        <p>For licensing inquiries, collaborations, or catalog access, contact <a href="mailto:descend9down@gmail.com">descend9down@gmail.com</a></p>
       </div>
     </section>
 
@@ -964,6 +981,14 @@
     const statusPlay = document.getElementById('status-playing');
     const statusFile = document.querySelector('.status-file');
 
+    // ── TRACK LIST (mirrors catalog) ──
+    const tracks = [
+      { file: 'Damiana Summer.mp3', title: 'Damiana Summer', artist: 'itsalion', mood: 'Reflective · Brooding', year: '2017' },
+      { file: 'lycanthropy.mp3',    title: 'Lycanthropy',    artist: 'itsalion', mood: 'Pensive · Emergent',   year: '2024' },
+      { file: 'Center_Me.mp3',      title: 'Center Me',      artist: 'itsalion', mood: 'Emotive · Fracture',  year: '2025' },
+    ];
+    let currentIndex = 0;
+
     // ── SPECTRUM BARS ──
     const durations = [0.5,0.7,0.9,0.6,1.1,0.8,0.65,0.75,1.0,0.55,0.85,0.7,0.95,0.6,0.8,1.2,0.7,0.9];
     for (let i = 0; i < 18; i++) {
@@ -975,7 +1000,7 @@
     }
 
     // ── AUDIO ──
-    const audio = new Audio('Damiana Summer.mp3');
+    const audio = new Audio(tracks[0].file);
     audio.preload = 'metadata';
     audio.volume = 0.75;
     audio.crossOrigin = 'anonymous';
@@ -1030,12 +1055,53 @@
       timeCur.textContent = fmt(audio.currentTime);
     });
 
-    audio.addEventListener('ended', () => setPlayingState(false));
+    audio.addEventListener('ended', () => {
+      // Auto-advance to next track
+      if (currentIndex < tracks.length - 1) {
+        loadTrackByIndex(currentIndex + 1);
+      } else {
+        setPlayingState(false);
+      }
+    });
 
     function setPlayingState(playing) {
       btnPause.textContent = playing ? '‖ PAUSE' : '► PLAY';
       playing ? btnPause.classList.add('active') : btnPause.classList.remove('active');
       statusPlay.textContent = playing ? '► PLAYING' : '‖ PAUSED';
+    }
+
+    // ── UPDATE PLAYER UI ──
+    function updatePlayerUI(track) {
+      statusFile.textContent = track.file.replace(/ /g, '_');
+      document.getElementById('info-title').textContent  = track.title;
+      document.getElementById('info-artist').textContent = track.artist;
+      document.getElementById('info-mood').textContent   = track.mood;
+      document.getElementById('info-year').textContent   = track.year;
+
+      const tickerStr = `${track.file.replace(/ /g,'_')}  ·· ${track.artist} ··  ${track.mood.toUpperCase()}  ·  VBR  ·  STEREO`;
+      document.querySelectorAll('.ticker-text').forEach(t => t.textContent = tickerStr);
+
+      timeCur.textContent = '00:00.0';
+      timeTot.textContent = '/ --:--.0';
+      progFill.style.width = '0%';
+    }
+
+    // ── LOAD BY INDEX ──
+    function loadTrackByIndex(index) {
+      currentIndex = index;
+      const track = tracks[index];
+      audio.pause();
+      audio.src = track.file;
+      audio.load();
+      updatePlayerUI(track);
+
+      // Highlight active catalog item
+      document.querySelectorAll('.catalog-item').forEach((item, i) => {
+        item.classList.toggle('active-track', i === index);
+      });
+
+      initVisualizer();
+      audio.play().then(() => setPlayingState(true)).catch(e => console.warn(e));
     }
 
     // ── TRANSPORT ──
@@ -1056,11 +1122,17 @@
     });
 
     btnPrev.addEventListener('click', () => {
-      audio.currentTime = Math.max(0, audio.currentTime - 10);
+      if (audio.currentTime > 3) {
+        audio.currentTime = 0;
+      } else if (currentIndex > 0) {
+        loadTrackByIndex(currentIndex - 1);
+      }
     });
 
     btnNext.addEventListener('click', () => {
-      audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10);
+      if (currentIndex < tracks.length - 1) {
+        loadTrackByIndex(currentIndex + 1);
+      }
     });
 
     volSlider.addEventListener('input', () => {
@@ -1074,43 +1146,8 @@
     });
 
     // ── CATALOG CLICK ──
-    function loadTrack(file, title, artist, mood, year) {
-      const wasPlaying = !audio.paused;
-      audio.pause();
-      audio.src = file;
-      audio.load();
-
-      // Update player UI
-      statusFile.textContent = file.replace(/ /g, '_');
-      const infoVals = document.querySelectorAll('.win-info .info-val');
-      if (infoVals[0]) infoVals[0].textContent = title;
-      if (infoVals[1]) infoVals[1].textContent = artist;
-      if (infoVals[2]) infoVals[2].textContent = mood;
-      if (infoVals[3]) infoVals[3].textContent = year;
-
-      const tickerStr = `${file.replace(/ /g,'_')}  ·· ${artist} ··  ${mood.toUpperCase()}  ·  320 KBPS  ·  STEREO`;
-      document.querySelectorAll('.ticker-text').forEach(t => t.textContent = tickerStr);
-
-      timeCur.textContent = '00:00.0';
-      timeTot.textContent = '/ --:--.0';
-      progFill.style.width = '0%';
-
-      initVisualizer();
-      audio.play().then(() => setPlayingState(true)).catch(e => console.warn(e));
-    }
-
-    document.querySelectorAll('.catalog-item').forEach(item => {
-      item.addEventListener('click', () => {
-        loadTrack(
-          item.dataset.file,
-          item.dataset.title,
-          item.dataset.artist,
-          item.dataset.mood,
-          item.dataset.year
-        );
-        document.querySelectorAll('.catalog-item').forEach(i => i.classList.remove('active-track'));
-        item.classList.add('active-track');
-      });
+    document.querySelectorAll('.catalog-item').forEach((item, index) => {
+      item.addEventListener('click', () => loadTrackByIndex(index));
     });
   </script>
 </body>
