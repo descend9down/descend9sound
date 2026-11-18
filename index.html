@@ -797,6 +797,8 @@
       .catalog-grid { grid-template-columns: 1fr; }
     }
   </style>
+<script data-goatcounter="https://d9d.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
@@ -1022,6 +1024,8 @@
     audio.preload = 'metadata';
     audio.volume = 0.75;
     audio.crossOrigin = 'anonymous';
+    let currentTrackFile = 'Damiana Summer.mp3';
+    let currentTrackTitle = 'Damiana Summer';
 
     // ── VISUALIZER ──
     let audioCtx, analyser, sourceNode, dataArray, vizConnected = false;
@@ -1075,6 +1079,19 @@
 
     audio.addEventListener('ended', () => setPlayingState(false));
 
+    // ── PLAY COUNTER ── fires on every genuine playback start/resume, whichever
+    // control triggered it, since it listens to the <audio> element itself.
+    audio.addEventListener('play', () => {
+      if (window.goatcounter && window.goatcounter.count) {
+        const slug = currentTrackFile.replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+        window.goatcounter.count({
+          path: 'track-played/' + slug,
+          title: 'Track played: ' + currentTrackTitle,
+          event: true,
+        });
+      }
+    });
+
     function setPlayingState(playing) {
       btnPause.textContent = playing ? '‖ PAUSE' : '► PLAY';
       playing ? btnPause.classList.add('active') : btnPause.classList.remove('active');
@@ -1122,6 +1139,8 @@
       audio.pause();
       audio.src = file;
       audio.load();
+      currentTrackFile = file;
+      currentTrackTitle = title;
 
       // Update player UI
       statusFile.textContent = file.replace(/ /g, '_');
